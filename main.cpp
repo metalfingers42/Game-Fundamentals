@@ -18,7 +18,7 @@ Switch to the next player by updating the “currentPlayer” and repeat steps 8-11
 */
 int main()
 {
-	srand(time(0));
+	
 	std::string namePlayer1;
 	std::string namePlayer2;
 	int playerGuess = 0;
@@ -26,54 +26,62 @@ int main()
 	std::cin >> namePlayer1;
 	std::cout << "What is Player 2's name" << std::endl;
 	std::cin >> namePlayer2;
-	int randomNumber = std::rand() % 100 + 1;
-	std::cout << "Answer is: " << randomNumber << std::endl;
 	int currentPlayer = rand() % 2;
-
-
-	do
+	char gameState;
+	gameState = 121; 
+	while (gameState == 121)
 	{
-		switch (currentPlayer)
-		{
-		case 0:
-			std::cout << namePlayer1 << " enter in your guess" << std::endl;
-			break;
-
-		case 1:
-			std::cout << namePlayer2 << " enter in your guess" << std::endl;
-			break;
-
-
-		default:
-			break;
-		}
-		std::cin >> playerGuess;
-		if (playerGuess == randomNumber)
+		srand(time(0));
+		int randomNumber = std::rand() % 100 + 1;
+		std::cout << "Answer is: " << randomNumber << std::endl;
+		do
 		{
 			switch (currentPlayer)
 			{
 			case 0:
-			{
-				std::cout << namePlayer1 << " you won this game!" << std::endl;
-			}
+				std::cout << namePlayer1 << " enter in your guess" << std::endl;
+				break;
+
 			case 1:
-			{
-				std::cout << namePlayer2 << " you won this game!" << std::endl;
-			}
+				std::cout << namePlayer2 << " enter in your guess" << std::endl;
+				break;
+
+
 			default:
 				break;
 			}
-			if (playerGuess < randomNumber)
+			std::cin >> playerGuess;
+			if (playerGuess == randomNumber)
 			{
-				std::cout << "Too low!" << std::endl;
-			}
-			else if (playerGuess > randomNumber)
-			{
-				std::cout << "Too high!" << std::endl;
-			}
+				switch (currentPlayer)
+				{
+				case 0:
+				{
+					std::cout << namePlayer1 << " you won this game!" << std::endl;
+					break;
+				}
+				case 1:
+				{
+					std::cout << namePlayer2 << " you won this game!" << std::endl;
+					break;
+				}
+				default:
+					break;
+				}
+				if (playerGuess < randomNumber)
+				{
+					std::cout << "Too low!" << std::endl;
+				}
+				else if (playerGuess > randomNumber)
+				{
+					std::cout << "Too high!" << std::endl;
+				}
 
-		} currentPlayer = 1 - currentPlayer;
-	} while (playerGuess != randomNumber);
+			} currentPlayer = 1 - currentPlayer;
+		} while (playerGuess != randomNumber);
+		std::cout << "Would you like to play again?" << std::endl << "y or n" << std::endl;
+		std::cin >> gameState;
+	}
 
 	getchar();
 
