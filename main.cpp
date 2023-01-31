@@ -18,7 +18,7 @@ Switch to the next player by updating the “currentPlayer” and repeat steps 8-11
 */
 int main()
 {
-	
+
 	std::string namePlayer1;
 	std::string namePlayer2;
 	int playerGuess = 0;
@@ -28,12 +28,12 @@ int main()
 	std::cin >> namePlayer2;
 	int currentPlayer = rand() % 2;
 	char gameState;
-	gameState = 121; 
-	while (gameState == 121)
+	gameState = 'y';
+	while (gameState == 'y') // Replay Function, While game state condition is set to true the game will continue to loop after the game finishes.
 	{
 		srand(time(0));
 		int randomNumber = std::rand() % 100 + 1;
-		std::cout << "Answer is: " << randomNumber << std::endl;
+		//d::cout << "Answer is: " << randomNumber << std::endl;
 		do
 		{
 			switch (currentPlayer)
@@ -65,28 +65,27 @@ int main()
 					std::cout << namePlayer2 << " you won this game!" << std::endl;
 					break;
 				}
-				default:
+				default: {
 					break;
 				}
-				if (playerGuess < randomNumber)
-				{
-					std::cout << "Too low!" << std::endl;
 				}
-				else if (playerGuess > randomNumber)
-				{
-					std::cout << "Too high!" << std::endl;
-				}
+			}
 
-			} currentPlayer = 1 - currentPlayer;
-		} while (playerGuess != randomNumber);
-		std::cout << "Would you like to play again?" << std::endl << "y or n" << std::endl;
-		std::cin >> gameState;
+			else if (playerGuess < randomNumber)
+			{
+				std::cout << "Too low!" << std::endl;
+			}
+			else if (playerGuess > randomNumber)
+			{
+				std::cout << "Too high!" << std::endl;
+			}
+
+
+		 currentPlayer = 1 - currentPlayer;
 	}
+			 while (playerGuess != randomNumber);
+			std::cout << "Would you like to play again?" << std::endl << "Press 'y' or 'n'" << std::endl;
+			std::cin >> gameState; //Sets the game to replay or not
+		}
 
-	getchar();
-
-
-	
-
-
-}
+	}
