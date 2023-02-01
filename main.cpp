@@ -23,7 +23,7 @@ int main()
 	std::string namePlayer2;
 	int playerGuess = 0;
 
-
+	srand(time(0));
 	int currentPlayer = rand() % 2;
 	char gameState;
 	gameState = 'y';
@@ -41,7 +41,7 @@ int main()
 		cout << "Please Enter Player 1's Name" << endl;
 		cin >> namePlayer1;
 	}
-	while (gameState == 'y' && players == 1) {
+	while (gameState == 'y' && players == 1) { //This is the gamestate for single player. A computer will make a guess on behalf of player 2
 		srand(time(0));
 		int cGuess;
 		int randomNumber = rand() % 100 + 1;
@@ -90,10 +90,10 @@ int main()
 			currentPlayer = 1 - currentPlayer;
 		} while (playerGuess != randomNumber);
 		cout << "Would you like to play again? Press 'y or 'n'" << endl;
-		cin >> gameState;
+		cin >> gameState; //Sets the game to loop
 	}
 
-	while (gameState == 'y' && players == 2) // Replay Function, While game state condition is set to true the game will continue to loop after the game finishes.
+	while (gameState == 'y' && players == 2) //This is the 2 player version of the game where a player
 	{
 		srand(time(0));
 		int randomNumber = std::rand() % 100 + 1;
