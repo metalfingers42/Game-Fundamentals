@@ -1,5 +1,5 @@
 #include<iostream>
-
+using namespace std;
 /*Create the variables, “playerOne”, ”playerTwo”, “randomNumber”, “playerGuess”, and “currentPlayer”
 Ask the first person their name and store that into the variable “playerOne”
 Ask the second person their name and store that into variable “playerTwo”
@@ -22,24 +22,88 @@ int main()
 	std::string namePlayer1;
 	std::string namePlayer2;
 	int playerGuess = 0;
-	std::cout << "What is Player 1's name?" << std::endl;
-	std::cin >> namePlayer1;
-	std::cout << "What is Player 2's name" << std::endl;
-	std::cin >> namePlayer2;
+
+
 	int currentPlayer = rand() % 2;
 	char gameState;
 	gameState = 'y';
-	while (gameState == 'y') // Replay Function, While game state condition is set to true the game will continue to loop after the game finishes.
+	int players = 0;
+
+	cout << "How many players are playing" << endl << "1 or 2" << endl;
+	cin >> players;
+	if (players == 2) {
+		cout << "Please Enter Player 1's name" << endl;
+		cin >> namePlayer1;
+		cout << "Please Enter Player 2's name" << endl;
+		cin >> namePlayer2;
+	}
+	else {
+		cout << "Please Enter Player 1's Name" << endl;
+		cin >> namePlayer1;
+	}
+	while (gameState == 'y' && players == 1) {
+		srand(time(0));
+		int cGuess;
+		int randomNumber = rand() % 100 + 1;
+		cout << randomNumber << endl;
+		do {
+			switch (currentPlayer) {
+			case 0: {
+				cout << namePlayer1 << " Enter your guess" << endl;
+				cin >> playerGuess;
+
+				break;
+				}
+			case 1:
+			{
+				cout << "The computer makes a guess of";
+				cGuess = rand() % 100 + 1;
+				cout << " " << cGuess << endl;
+				playerGuess = cGuess;
+				break;
+			}
+			default: {
+				break;
+			}
+			}
+			if (playerGuess == randomNumber){
+				switch (currentPlayer) {
+				case 0: {
+					cout << namePlayer1 << " has won the game" << endl;
+					break;
+				}
+				case 1: {
+					cout << "The Computer has won the game";
+					break;
+				}
+				default: {
+					break;
+				}
+				}
+			}
+			else if (playerGuess < randomNumber) {
+				cout << "The number is too low" << endl << endl;
+			}
+			else if (playerGuess> randomNumber) {
+				cout << "The number is too high" << endl << endl;
+			}
+			currentPlayer = 1 - currentPlayer;
+		} while (playerGuess != randomNumber);
+		cout << "Would you like to play again? Press 'y or 'n'" << endl;
+		cin >> gameState;
+	}
+
+	while (gameState == 'y' && players == 2) // Replay Function, While game state condition is set to true the game will continue to loop after the game finishes.
 	{
 		srand(time(0));
 		int randomNumber = std::rand() % 100 + 1;
-		//d::cout << "Answer is: " << randomNumber << std::endl;
+		cout << "Answer is: " << randomNumber << std::endl;
 		do
 		{
 			switch (currentPlayer)
 			{
 			case 0:
-				std::cout << namePlayer1 << " enter in your guess" << std::endl;
+				cout << namePlayer1 << " enter in your guess" << std::endl;
 				break;
 
 			case 1:
